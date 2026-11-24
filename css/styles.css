@@ -1,0 +1,554 @@
+/* ==========================================================================
+   ESTILOS GENERALES
+   ========================================================================== */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* ==========================================================================
+   HEADER (Glassmorphism, logo bicolor y enlaces animados)
+   ========================================================================== */
+#header {
+  background-color: rgba(24, 24, 27, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 3px solid #ff8f00;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition:
+    background-color 0.3s ease,
+    padding 0.3s ease;
+}
+
+/* Logo tipográfico bicolor e iluminado dorado en hover */
+#header .brand-logo,
+#footer .brand-logo {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  transition:
+    transform 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+#header .brand-logo {
+  margin-bottom: 0;
+}
+
+#header .brand-logo .brand-vip,
+#footer .brand-logo .brand-vip {
+  color: #ff8f00;
+  font-weight: 800;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+#header .brand-logo:hover,
+#footer .brand-logo:hover {
+  color: #ffffff;
+  transform: scale(1.04);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+#header .brand-logo:hover .brand-vip,
+#footer .brand-logo:hover .brand-vip {
+  color: #ffc107;
+  text-shadow:
+    0 0 12px rgba(255, 193, 7, 0.85),
+    0 0 22px rgba(255, 143, 0, 0.6);
+}
+
+/* Subrayado naranja animado desde el centro en los enlaces */
+#header .nav-link {
+  position: relative;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-left: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.25s ease;
+}
+
+#header .nav-link:hover,
+#header .nav-link.active {
+  color: #ffffff;
+}
+
+#header .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background-color: #ff8f00;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+#header .nav-link:hover::after,
+#header .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Estilo tipo botón píldora exclusivamente para el enlace de Contacto */
+#header .nav-link[data-bs-target="#contacto-modal"] {
+  border: 1px solid rgba(255, 143, 0, 0.6);
+  border-radius: 50rem;
+  padding: 0.4rem 1.1rem;
+  margin-left: 1rem;
+  color: #ffb74d;
+  transition: all 0.25s ease;
+}
+
+#header .nav-link[data-bs-target="#contacto-modal"]::after {
+  display: none;
+}
+
+#header .nav-link[data-bs-target="#contacto-modal"]:hover {
+  background-color: #ff8f00;
+  border-color: #ff8f00;
+  color: #18181b;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 143, 0, 0.35);
+}
+
+/* ==========================================================================
+   HOME (Carrusel, Ken Burns, contraste de texto, tarjetas y banner CTA)
+   ========================================================================== */
+#home-content {
+  flex: 1;
+}
+
+#home-carousel {
+  border-bottom: 4px solid #ff8f00;
+}
+
+#home-carousel .carousel-item {
+  overflow: hidden;
+}
+
+#home-carousel .car-image {
+  height: 75vh;
+  max-height: 750px;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 6s ease-out;
+}
+
+#home-carousel .carousel-item.active .car-image {
+  transform: scale(1.06);
+}
+
+/* Degradado oscuro profundo para asegurar contraste sobre cualquier foto */
+#home-carousel .carousel-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+#home-carousel .carousel-caption {
+  z-index: 2;
+}
+
+/* Sombra difusa y color blanco asegurado para título y subtítulo del carrusel */
+#home-carousel .carousel-caption h1,
+#home-carousel .carousel-caption h2,
+#home-carousel .carousel-caption p {
+  color: #ffffff !important;
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.9),
+    0 0 24px rgba(0, 0, 0, 0.75);
+}
+
+@keyframes subirTexto {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#home-carousel .carousel-item.active .carousel-caption {
+  animation: subirTexto 0.8s ease-out forwards;
+}
+
+#home-content h1 span {
+  font-weight: 300;
+}
+
+/* Micro-interacciones en las tarjetas de servicio */
+#home-content .auto-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+#home-content .auto-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #ff8f00;
+  transition: width 0.3s ease;
+}
+
+#home-content .auto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+#home-content .auto-card:hover::after {
+  width: 100%;
+}
+
+#home-content .auto-card .badge {
+  transition: transform 0.28s ease;
+}
+
+#home-content .auto-card:hover .badge {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+#home-content .auto-card .btn i {
+  transition: transform 0.22s ease;
+}
+
+#home-content .auto-card .btn:hover {
+  background-color: #ff8f00;
+  border-color: #ff8f00;
+  color: #ffffff;
+}
+
+#home-content .auto-card .btn:hover i {
+  transform: translateX(4px);
+}
+
+/* Banner de cierre en Inicio (visible tanto en modo claro como oscuro) */
+.cta-banner {
+  background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+  border: 1px solid #3f3f46;
+  border-left: 4px solid #ff8f00;
+}
+
+@media (max-width: 767px) {
+  #home-carousel .car-image {
+    height: 35vh;
+  }
+
+  #home-content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* ==========================================================================
+   VENTAS Y SOBRE NOSOTROS
+   ========================================================================== */
+#ventas,
+#sobre-nosotros {
+  flex: 1;
+}
+
+.auto-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.auto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.auto-img-wrapper {
+  overflow: hidden;
+}
+
+.auto-img {
+  transition: transform 0.3s ease;
+}
+
+.auto-card:hover .auto-img {
+  transform: scale(1.04);
+}
+
+/* Tarjetas del equipo (Sobre Nosotros) */
+.team-card img {
+  width: 115px;
+  height: 115px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+  border: 3px solid #ff8f00;
+  padding: 3px;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.06);
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #212529;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.social-btn:hover {
+  background-color: #ff8f00;
+  border-color: #ff8f00;
+  color: #18181b;
+  transform: translateY(-2px);
+}
+
+/* Desplegables modernos del panel de filtros */
+.filtro-select {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #212529;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filtro-select:hover:not(:disabled) {
+  background-color: #ffffff;
+  border-color: #ff8f00;
+}
+
+.filtro-select:focus {
+  background-color: #ffffff;
+  border-color: #ff8f00;
+  box-shadow: 0 0 0 0.25rem rgba(255, 143, 0, 0.18);
+}
+
+.filtro-select:disabled {
+  background-color: #f1f3f5;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   FOOTER CORPORATIVO
+   ========================================================================== */
+#footer {
+  border-top: 3px solid #ff8f00;
+  background-color: #18181b;
+  margin-top: auto;
+  color: #a1a1aa;
+  padding: 60px 0 30px;
+  font-size: 0.95rem;
+}
+
+#footer h6 {
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+#footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer ul li {
+  margin-bottom: 0.55rem;
+}
+
+#footer ul li a {
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#footer ul li a:hover {
+  color: #ff8f00;
+}
+
+.footer-social {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #27272a;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-social:hover {
+  background-color: #ff8f00;
+  color: #18181b;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  border-top: 1px solid #27272a;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   TRANSICIÓN SUAVE DE TEMA (Claro <-> Oscuro)
+   ========================================================================== */
+body,
+.bg-white,
+.bg-light,
+.card,
+.modal-content,
+.filtro-select,
+.btn-light,
+.social-btn {
+  transition:
+    background-color 0.4s ease,
+    background 0.4s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* ==========================================================================
+   MODO OSCURO ESTILO GEMINI (Bootstrap 5.3 data-bs-theme="dark")
+   ========================================================================== */
+[data-bs-theme="dark"] body {
+  background-color: #131314;
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    #1f2430 0%,
+    #16171a 45%,
+    #131314 100%
+  );
+  background-attachment: fixed;
+  color: #e3e3e3;
+}
+
+[data-bs-theme="dark"] .bg-white,
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .modal-content {
+  background-color: #1e1f20 !important;
+  color: #e3e3e3 !important;
+  border-color: #2e3033 !important;
+}
+
+[data-bs-theme="dark"] .bg-light {
+  background-color: #282a2c !important;
+  color: #e3e3e3 !important;
+  border-color: #3c4043 !important;
+}
+
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3,
+[data-bs-theme="dark"] h4,
+[data-bs-theme="dark"] h5,
+[data-bs-theme="dark"] h6,
+[data-bs-theme="dark"] .text-dark {
+  color: #e3e3e3 !important;
+}
+
+[data-bs-theme="dark"] .text-secondary,
+[data-bs-theme="dark"] .text-muted {
+  color: #9aa0a6 !important;
+}
+
+/* Mantiene el contraste oscuro sobre insignias y botones amarillos */
+[data-bs-theme="dark"] .bg-warning,
+[data-bs-theme="dark"] .bg-warning.text-dark,
+[data-bs-theme="dark"] .btn-warning,
+[data-bs-theme="dark"] .btn-warning.text-dark {
+  color: #131314 !important;
+}
+
+/* Botones claros y sociales adaptados a superficie oscura */
+[data-bs-theme="dark"] .btn-light,
+[data-bs-theme="dark"] .social-btn {
+  background-color: #282a2c !important;
+  border-color: #3c4043 !important;
+  color: #e3e3e3 !important;
+}
+
+[data-bs-theme="dark"] .btn-light:hover,
+[data-bs-theme="dark"] .social-btn:hover {
+  background-color: #333538 !important;
+  border-color: #ff8f00 !important;
+  color: #ffffff !important;
+}
+
+/* Inputs y desplegables en modo oscuro */
+[data-bs-theme="dark"] .filtro-select,
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+  background-color: #282a2c;
+  border-color: #3c4043;
+  color: #e3e3e3;
+}
+
+[data-bs-theme="dark"] .filtro-select:hover:not(:disabled),
+[data-bs-theme="dark"] .filtro-select:focus,
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+  background-color: #1e1f20;
+  border-color: #ff8f00;
+  color: #ffffff;
+}
+
+[data-bs-theme="dark"] .filtro-select:disabled {
+  background-color: #18191a;
+  color: #6e7277;
+}
