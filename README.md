@@ -2,6 +2,10 @@
 
 Sitio web frontend para una concesionaria de vehículos, desarrollado como proyecto práctico para aplicar maquetación responsive, consumo de APIs y renderizado dinámico en el navegador.
 
+## 🌐 Demo en vivo
+
+Podés probar el sitio funcionando online acá: **[Automotora VIP - GitHub Pages](https://pedrorecouso.github.io/automotora-vip/)**
+
 ## ✨ Funcionalidades principales
 
 - **Catálogo dinámico (`ventas.html`):** Carga de vehículos, marcas y cotización de moneda mediante peticiones asíncronas (`fetch` / AJAX) y renderizado reactivo con **Vue.js**.
